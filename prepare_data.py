@@ -4,11 +4,13 @@ import numpy as np
 import pandas as pd
 from random import uniform as rand_value
 from os import listdir
-import csv
+
 
 #tylko jeden katalog
 directory = 'C:/Users/szymc/Desktop/inzynierka/odszumianie/2017_03_08_Struct_First_Pass_Seg/AICS-17/'
 file_list = listdir(directory)
+
+
 
 for i in range(len(file_list)):
     #z czytywanie intensywności z pojedynczego zdjęcia .ome.tiff
@@ -28,15 +30,16 @@ for i in range(len(file_list)):
 
     distribution_n = np.round((((intensity - min_intensity) / (max_intensity - min_intensity)) * (max_n - min_n) + min_n), 4)
     
-    outpath = 'C:/Users/szymc/Desktop/inzynierka/data/data_frame_' + str(i) + '.txt'
+    outpath = 'C:/Users/szymc/Desktop/inzynierka/data/data_frame_' + str(i) + '.npy'
     #save distribution index to file 
     '''
     for j in range(distribution_n.shape[0]):
         distribution_to_file = pd.DataFrame(distribution_n[j].reshape(distribution_n.shape[0], -1))
         distribution_to_file.to_csv(outpath, sep=',', index=False)
     '''
-    #distribution_n_flat = distribution_n.reshape(56, -1)
+   #distribution_n_flat = distribution_n.reshape(distribution_n.shape[0], -1)
     #df = pd.DataFrame(distribution_n_flat)
     #df.to_csv(outpath)
-    print(distribution_n)
+    np.save(outpath, distribution_n)
+    print(i)
     

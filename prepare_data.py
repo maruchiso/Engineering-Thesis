@@ -5,16 +5,16 @@ import pandas as pd
 from random import uniform as rand_value
 from os import listdir
 
-
+#marcin on pc, szymc on laptop
+user = 'marcin'
 #tylko jeden katalog
-directory = 'C:/Users/szymc/Desktop/inzynierka/odszumianie/2017_03_08_Struct_First_Pass_Seg/AICS-17/'
+directory = 'C:/Users/'+ user +'/Desktop/inzynierka/odszumianie/2017_03_08_Struct_First_Pass_Seg/AICS-17/'
 file_list = listdir(directory)
-
 
 
 for i in range(len(file_list)):
     #z czytywanie intensywności z pojedynczego zdjęcia .ome.tiff
-    path1  = 'C:/Users/szymc/Desktop/inzynierka/odszumianie/2017_03_08_Struct_First_Pass_Seg/AICS-17/AICS-17_'
+    path1  = 'C:/Users/'+ user +'/Desktop/inzynierka/odszumianie/2017_03_08_Struct_First_Pass_Seg/AICS-17/AICS-17_'
     path3 = '.ome.tif'
     path2 = str(i)
     path = path1 + path2 + path3
@@ -30,7 +30,7 @@ for i in range(len(file_list)):
 
     distribution_n = np.round((((intensity - min_intensity) / (max_intensity - min_intensity)) * (max_n - min_n) + min_n), 4)
     
-    outpath = 'C:/Users/szymc/Desktop/inzynierka/data/data_frame_' + str(i) + '.npy'
+    outpath = 'C:/Users/'+ user +'/Desktop/inzynierka/data/data_frame_' + str(i) + '.npy'
     #save distribution index to file 
     '''
     for j in range(distribution_n.shape[0]):
